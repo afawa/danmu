@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import threading
 import Danmu
 import random
@@ -16,11 +15,14 @@ def put_danmu(filename,pos):
     try:
         with open(filename, 'r', encoding='gbk') as f:
             danmu_content = f.read().split('\n')
-            # print(danmu_content)
+            while '' in danmu_content:
+                danmu_content.remove('')
+            print(danmu_content,len(danmu_content),pos.value)
         if pos.value < len(danmu_content):
             putIn = danmu_content[int(pos.value):]
             content = ''
             su = min(10, len(putIn))
+            print(putIn)
             for i in range(su):
                 content = content + putIn[i] + '\n'
             pos.value = pos.value + su
