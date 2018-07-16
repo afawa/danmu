@@ -2,6 +2,9 @@ import threading
 import Danmu
 import random
 import time
+import os
+import sys
+import datetime
 import multiprocessing
 from multiprocessing import Process
 
@@ -26,6 +29,13 @@ def put_danmu(filename,pos):
             for i in range(su):
                 content = content + putIn[i] + '\n'
             pos.value = pos.value + su
+        else:
+            start_time = datetime.datetime.now()
+            while True:
+                end_time = datetime.datetime.now()
+                if (end_time-start_time).seconds>=13:
+                    sys.exit()
+
     finally:
         lock.release()
         if content:
